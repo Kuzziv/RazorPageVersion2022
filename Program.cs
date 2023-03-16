@@ -1,4 +1,6 @@
+using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
+using RazorPageVersion2022.Service.JsonService;
 using RazorPageVersion2022.Service.MockDataService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IItemService, MockItemService>();
+builder.Services.AddTransient<JsonFileService<Item>>();
 
 var app = builder.Build();
 

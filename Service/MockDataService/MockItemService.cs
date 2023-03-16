@@ -1,26 +1,65 @@
 ﻿using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
+using RazorPageVersion2022.Service.JsonService;
 
 namespace RazorPageVersion2022.Service.MockDataService
 {
     public class MockItemService : IItemService
     {
+        private JsonFileService<Item> _jsonFileService { get; set; }
+
         private List<Item> _items;
 
-        public MockItemService()
+        public MockItemService(JsonFileService<Item> jsonFileService)
         {
+            _jsonFileService = jsonFileService;
             _items = MockData.MockItems.GetAllItems();
+            //_items = _jsonFileService.GetJsonItems().ToList();
+        }
+        public List<Item> GetAllItems()
+        {
+            return MockData.MockItems.GetAllItems();
         }
 
         public void AddItem(Item item)
         {
             MockData.MockItems.AddItem(item);
+            _jsonFileService.SaveJsonItems(_items);
         }
 
-        public List<Item> GetAllItems()
+        public Item DeleteItem(int? itemId)
         {
-            return MockData.MockItems.GetAllItems();
+            Item itemToBeDeleted = null;
+            foreach (Item item in _items)
+            {
+                if (item.Id == itemId)
+                {
+                    itemToBeDeleted = item;
+                    break;
+                }
+            }
+            if (itemToBeDeleted != null)
+            {
+                _items.Remove(itemToBeDeleted);
+                _jsonFileService.SaveJsonItems(_items);
+            }
+            return itemToBeDeleted;
         }
+        public void UpdateItem(Item item)
+        {
+            if (item != null)
+            {
+                foreach (Item i in _items)
+                {
+                    if (i.Id == item.Id)
+                    {
+                        i.Name = item.Name;
+                        i.Price = item.Price;
+                    }
+                }
+                _jsonFileService.SaveJsonItems(_items);
+            }
+        }        
 
         public Item GetItemById(int id)
         {
@@ -60,20 +99,7 @@ namespace RazorPageVersion2022.Service.MockDataService
             return filterList;
         }
 
-        public void UpdateItem(Item item)
-        {
-            if (_items != null)
-            {
-                foreach (Item i in _items)
-                {
-                    if (i.Id == item.Id)
-                    {
-                        i.Name = item.Name;
-                        i.Price = item.Price;
-                    }
-                }
-            }
-        }
+        
 
 
     }
