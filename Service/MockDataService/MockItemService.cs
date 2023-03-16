@@ -13,8 +13,8 @@ namespace RazorPageVersion2022.Service.MockDataService
         public MockItemService(JsonFileService<Item> jsonFileService)
         {
             _jsonFileService = jsonFileService;
-            _items = MockData.MockItems.GetAllItems();
-            //_items = _jsonFileService.GetJsonItems().ToList();
+            //_items = MockData.MockItems.GetAllItems();
+            _items = _jsonFileService.GetJsonItems().ToList();
         }
         public List<Item> GetAllItems()
         {

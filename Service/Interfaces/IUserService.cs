@@ -1,6 +1,10 @@
-﻿namespace RazorPageVersion2022.Service.Interfaces
+﻿using RazorPageVersion2022.Models;
+
+namespace RazorPageVersion2022.Service.Interfaces
 {
-    public class IUserService
+    public interface IUserService
     {
+        List<User> GetAllUsers();
+
     }
 }
