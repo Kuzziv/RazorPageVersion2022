@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
 using RazorPageVersion2022.Service.MockDataService;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,31 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IItemService, MockItemService>();
 builder.Services.AddSingleton<IUserService, MockDataUserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    // This lambda determines whether user consent for non-essential cookies is needed for a given request. 
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    // This lambda determines whether user consent for non-essential cookies is needed for a given request. 
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieOptions =>
+{
+    cookieOptions.LoginPath = "/Login/LoginPage";
+});
+
+builder.Services.AddMvc().AddRazorPagesOptions(options =>
+{
+    options.Conventions.AuthorizeFolder("/index");
+}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
 
 var app = builder.Build();
 

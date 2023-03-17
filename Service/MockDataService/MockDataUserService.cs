@@ -5,9 +5,18 @@ namespace RazorPageVersion2022.Service.MockDataService
 {
     public class MockDataUserService : IUserService
     {
+        public List<User> Users { get; set; }
+
+        public MockDataUserService()
+        {
+            Users = MockData.MockUsers.GetAllUsers();
+        }
+
         public List<User> GetAllUsers()
         {
             return MockData.MockUsers.GetAllUsers();
         }
+
+        
     }
 }
