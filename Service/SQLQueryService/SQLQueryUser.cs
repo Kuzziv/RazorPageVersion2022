@@ -7,7 +7,7 @@ namespace RazorPageVersion2022.Service.SQLQueryService
     {
         static string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=RazorPageVersion2022DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
 
-        public static List<User> GetAllItems()
+        public static List<User> GetAllUser()
         {
             List<User> userList = new List<User>();
             string query = "Select * from Users";
@@ -28,6 +28,21 @@ namespace RazorPageVersion2022.Service.SQLQueryService
                 }
             }
             return userList;
+        }
+
+        public static void AddUser(User user)
+        {
+            string query = "INSERT INTO Users (UserName, Password) VALUES (@UserName, @Password)";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                {
+                    command.Parameters.AddWithValue("@UserName", user.UserName);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+                    int affectedRows = command.ExecuteNonQuery();
+                }
+            }
         }
 
     }

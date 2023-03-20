@@ -1,5 +1,6 @@
 ﻿using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
+using RazorPageVersion2022.Service.SQLQueryService;
 
 namespace RazorPageVersion2022.Service.SQLService
 {
@@ -17,7 +18,7 @@ namespace RazorPageVersion2022.Service.SQLService
 
         public List<Item> GetAllItems()
         {
-            throw new NotImplementedException();
+            return SQLQueryItem.GetAllItems();
         }
 
         public Item GetItemById(int id)
