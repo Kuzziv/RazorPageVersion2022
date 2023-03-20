@@ -6,6 +6,7 @@ using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
+using RazorPageVersion2022.Service.MockDataService;
 
 namespace RazorPageVersion2022.Pages.Login
 {
@@ -14,6 +15,8 @@ namespace RazorPageVersion2022.Pages.Login
         public static User LoggedInUser { get; set; } = null;
 
         private IUserService _iUserService;
+
+        private MockDataUserService _mockDataUserService;
 
         [BindProperty] public string UserName { get; set; }
 
@@ -30,7 +33,7 @@ namespace RazorPageVersion2022.Pages.Login
         public async Task<IActionResult> OnPost()
         {
 
-            List<User> users = _iUserService.Users;
+            List<User> users = _iUserService.GetAllUsers();
             foreach (User user in users)
             {
 

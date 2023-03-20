@@ -9,7 +9,7 @@ namespace RazorPageVersion2022.Service.MockDataService
 
         public MockDataUserService()
         {
-            Users = MockData.MockUsers.GetAllUsers();
+            Users = MockData.MockUsers.GetAllUsers().ToList();
         }
 
         public List<User> GetAllUsers()

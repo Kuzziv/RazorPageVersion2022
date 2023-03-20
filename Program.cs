@@ -6,6 +6,7 @@ using RazorPageVersion2022.Service.JsonService;
 using RazorPageVersion2022.Service.MockDataService;
 using System.Security.Claims;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,22 +22,26 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
-builder.Services.Configure<CookiePolicyOptions>(options =>
-{
-    // This lambda determines whether user consent for non-essential cookies is needed for a given request. 
-    options.CheckConsentNeeded = context => true;
-    options.MinimumSameSitePolicy = SameSiteMode.None;
-});
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieOptions =>
 {
     cookieOptions.LoginPath = "/Login/LoginPage";
 });
 
-builder.Services.AddMvc().AddRazorPagesOptions(options =>
+builder.Services.AddAuthorization(options =>
 {
-    options.Conventions.AuthorizeFolder("/index");
-}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+    options.AddPolicy("Administrator", policy =>
+        policy.RequireClaim(ClaimTypes.Role, "admin"));
+});
+
+//builder.Services.AddMvc().AddRazorPagesOptions(options =>
+//{
+//    options.Conventions.AuthorizeFolder("/Item");
+//}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+//builder.Services.AddMvc().AddRazorPagesOptions(options =>
+//{
+//    options.Conventions.AuthorizeFolder("/Item");
+//}).SetCompatibilityVersion(CompatibilityVersion.Latest);
 
 
 var app = builder.Build();
