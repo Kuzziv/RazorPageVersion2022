@@ -4,6 +4,7 @@ using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
 using RazorPageVersion2022.Service.MockDataService;
+using RazorPageVersion2022.Service.SQLService;
 using System.Security.Claims;
 
 
@@ -14,6 +15,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IItemService, MockItemService>();
 builder.Services.AddSingleton<IUserService, MockDataUserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
+builder.Services.AddTransient<JsonFileService<User>>();
+
+//builder.Services.AddTransient<IItemService, SQLItemService>();
+//builder.Services.AddTransient<IUserService, SQLUserService>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {

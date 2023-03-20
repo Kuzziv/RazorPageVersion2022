@@ -16,8 +16,6 @@ namespace RazorPageVersion2022.Pages.Login
 
         private IUserService _iUserService;
 
-        private MockDataUserService _mockDataUserService;
-
         [BindProperty] public string UserName { get; set; }
 
         [BindProperty, DataType(DataType.Password)]

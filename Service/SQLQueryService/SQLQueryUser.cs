@@ -3,14 +3,14 @@ using System.Data.SqlClient;
 
 namespace RazorPageVersion2022.Service.SQLQueryService
 {
-    public class SQLQueryItem
+    public class SQLQueryUser
     {
         static string ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=RazorPageVersion2022DB;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
 
-        public static List<Item> GetAllItems()
+        public static List<User> GetAllItems()
         {
-            List<Item> itemsList = new List<Item>();
-            string query = "Select * from Item";
+            List<User> userList = new List<User>();
+            string query = "Select * from Users";
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
@@ -20,18 +20,15 @@ namespace RazorPageVersion2022.Service.SQLQueryService
                 {
                     while (reader.Read())
                     {
-                        Item item = new Item();
-                        item.Id = Convert.ToInt32(reader[0]);
-                        item.Name = Convert.ToString(reader[1]);
-                        item.Price = Convert.ToInt32(reader[2]);
-                        itemsList.Add(item);
+                        User user = new User();
+                        user.UserName = Convert.ToString(reader[0]);
+                        user.Password = Convert.ToString(reader[1]);
+                        userList.Add(user);
                     }
-                }                
+                }
             }
-            return itemsList;
+            return userList;
         }
-
-
 
     }
 }

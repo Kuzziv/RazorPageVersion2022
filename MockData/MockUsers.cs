@@ -18,5 +18,9 @@ namespace RazorPageVersion2022.MockData
             return Users;
         }
 
+        public static void AddUser(User user)
+        {
+            Users.Add(user);
+        }
     }
 }
