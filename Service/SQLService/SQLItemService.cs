@@ -13,7 +13,8 @@ namespace RazorPageVersion2022.Service.SQLService
 
         public Item DeleteItem(int? id)
         {
-            throw new NotImplementedException();
+            SQLQueryItem.DeleteItem(id);
+            return null;
         }
 
         public List<Item> GetAllItems()

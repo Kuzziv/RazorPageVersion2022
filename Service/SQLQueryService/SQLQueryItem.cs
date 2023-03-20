@@ -31,6 +31,20 @@ namespace RazorPageVersion2022.Service.SQLQueryService
             return itemsList;
         }
 
+        public static void DeleteItem(int? id)
+        {
+            string query = $"delete from Item where Id = {id}";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                {
+
+                    int affectedRows = command.ExecuteNonQuery();
+                }
+            }
+        }
+
 
 
     }
