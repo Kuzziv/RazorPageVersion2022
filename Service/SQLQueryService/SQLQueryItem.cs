@@ -45,7 +45,40 @@ namespace RazorPageVersion2022.Service.SQLQueryService
             }
         }
 
+        public static void AddItem(Item item)
+        {
+            string query = "INSERT INTO Item (Name, Price) VALUES (@Name, @Price)";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                {
+                    command.Parameters.AddWithValue("@Name", item.Name);
+                    command.Parameters.AddWithValue("@Price", item.Price);
+                    int affectedRows = command.ExecuteNonQuery();
+                }
+            }
+        }
 
+        public Item GetItemById(int id)
+        {
+            return null;
+        }
+
+        public static IEnumerable<Item> NameSearch(string str)
+        {
+            return null;
+        }
+
+        public static IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0)
+        {
+            return null;
+        }
+
+        public void UpdateItem(Item item)
+        {
+            
+        }
 
     }
 }
