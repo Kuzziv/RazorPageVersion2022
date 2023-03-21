@@ -47,6 +47,26 @@ namespace RazorPageVersion2022.Service.SQLService
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Item> SortByName()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Item> SortByNameDescending()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Item> SortByPrice()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Item> SortByPriceDescending()
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateItem(Item item)
         {
             throw new NotImplementedException();

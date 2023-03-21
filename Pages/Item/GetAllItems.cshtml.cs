@@ -46,5 +46,29 @@ namespace RazorPageVersion2022.Pages.Item
             Items = _iItemService.SortByIdDescending().ToList();
             return Page();
         }
+
+        public IActionResult OnGetSortByName()
+        {
+            Items = _iItemService.SortByName().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByNameDescending()
+        {
+            Items = _iItemService.SortByNameDescending().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByPrice()
+        {
+            Items = _iItemService.SortByPrice().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByPriceDescending()
+        {
+            Items = _iItemService.SortByPriceDescending().ToList();
+            return Page();
+        }
     }
 }

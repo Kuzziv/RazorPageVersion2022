@@ -91,9 +91,31 @@ namespace RazorPageVersion2022.Service.MockDataService
 
 
         public IEnumerable<Item> SortByName()
+        {            
+            return from items in _items
+                   orderby items.Name
+                   select items;
+        }
+
+        public IEnumerable<Item> SortByNameDescending()
         {
-            _items.Sort(new NameComperator());
-            return _items;
+            return from items in _items
+                   orderby items.Name descending
+                   select items;
+        }
+
+        public IEnumerable<Item> SortByPrice()
+        {
+            return from items in _items
+                   orderby items.Price
+                   select items;
+        }
+
+        public IEnumerable<Item> SortByPriceDescending()
+        {
+            return from items in _items
+                   orderby items.Price descending
+                   select items;
         }
 
         public IEnumerable<Item> NameSearch(string str)
