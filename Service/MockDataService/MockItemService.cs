@@ -144,8 +144,5 @@ namespace RazorPageVersion2022.Service.MockDataService
             return filterList;
         }
 
-        
-
-
     }
 }
