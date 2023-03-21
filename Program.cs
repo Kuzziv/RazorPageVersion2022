@@ -38,16 +38,10 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim(ClaimTypes.Role, "admin"));
 });
 
-//builder.Services.AddMvc().AddRazorPagesOptions(options =>
-//{
-//    options.Conventions.AuthorizeFolder("/Item");
-//}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-//builder.Services.AddMvc().AddRazorPagesOptions(options =>
-//{
-//    options.Conventions.AuthorizeFolder("/Item");
-//}).SetCompatibilityVersion(CompatibilityVersion.Latest);
-
+builder.Services.AddMvc().AddRazorPagesOptions(options =>
+{
+    options.Conventions.AuthorizeFolder("/Item");
+}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
 var app = builder.Build();
 
@@ -63,6 +57,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

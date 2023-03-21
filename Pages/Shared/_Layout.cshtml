@@ -38,9 +38,6 @@
                                     <li class="nav-item">
                                         <a class="nav-link" asp-area="" asp-page="/Login/LoginPage">Login</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-area="" asp-page="/Login/CreateLogin">Create new User</a>
-                                    </li>
                                 }
                                 else
                                 {
@@ -51,7 +48,13 @@
                                     <li class="nav-item">
                                         <a class="nav-link" asp-area="" asp-page="/Login/LogOutPage">Logout</a>
                                     </li>
-                                } 
+                                }
+                                if (LoginPageModel.LoggedInUser != null && LoginPageModel.LoggedInUser.UserName == "admin")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
+                                    </li>
+                                }
                             }
                         </ul>
                     </ul>

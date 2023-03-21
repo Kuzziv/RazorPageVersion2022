@@ -17,7 +17,7 @@ namespace RazorPageVersion2022.Service.JsonService
             get { return Path.Combine(WebHostEnvironment.WebRootPath, "Data", typeof(T).Name + "s.json"); }
         }
 
-        public void SaveJsonItems(List<T> items)
+        public void SaveJsonObjects(List<T> items)
         {
             using (FileStream jsonFileWriter = File.Create(JsonFileName))
             {
@@ -30,7 +30,7 @@ namespace RazorPageVersion2022.Service.JsonService
             }
         }
 
-        public IEnumerable<T> GetJsonItems()
+        public IEnumerable<T> GetJsonObjects()
         {
             using (StreamReader jsonFileReader = File.OpenText(JsonFileName))
             {

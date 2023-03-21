@@ -15,7 +15,7 @@ namespace RazorPageVersion2022.Service.MockDataService
         {
             _jsonFileService = jsonFileService;
             //_items = MockData.MockItems.GetAllItems();
-            _items = _jsonFileService.GetJsonItems().ToList();
+            _items = _jsonFileService.GetJsonObjects().ToList();
         }
         public List<Item> GetAllItems()
         {
@@ -25,7 +25,7 @@ namespace RazorPageVersion2022.Service.MockDataService
         public void AddItem(Item item)
         {
             MockData.MockItems.AddItem(item);
-            _jsonFileService.SaveJsonItems(_items);
+            _jsonFileService.SaveJsonObjects(_items);
         }
 
         public Item DeleteItem(int? itemId)
@@ -42,7 +42,7 @@ namespace RazorPageVersion2022.Service.MockDataService
             if (itemToBeDeleted != null)
             {
                 _items.Remove(itemToBeDeleted);
-                _jsonFileService.SaveJsonItems(_items);
+                _jsonFileService.SaveJsonObjects(_items);
             }
             return itemToBeDeleted;
         }
@@ -58,7 +58,7 @@ namespace RazorPageVersion2022.Service.MockDataService
                         i.Price = item.Price;
                     }
                 }
-                _jsonFileService.SaveJsonItems(_items);
+                _jsonFileService.SaveJsonObjects(_items);
             }
         }        
 
@@ -80,6 +80,7 @@ namespace RazorPageVersion2022.Service.MockDataService
                    orderby item.Id
                    select item;
         }
+
 
         public IEnumerable<Item> SortByIdDescending()
         {

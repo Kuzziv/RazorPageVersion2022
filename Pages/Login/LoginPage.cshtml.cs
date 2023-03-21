@@ -7,6 +7,7 @@ using RazorPageVersion2022.Service.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using RazorPageVersion2022.Service.MockDataService;
+using Microsoft.AspNetCore.Identity;
 
 namespace RazorPageVersion2022.Pages.Login
 {
@@ -35,17 +36,25 @@ namespace RazorPageVersion2022.Pages.Login
             foreach (User user in users)
             {
 
-                if (UserName == user.UserName && Password == user.Password)
+                if (UserName == user.UserName)
                 {
+                    var passwordHasher = new PasswordHasher<string>();
+                    if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
+                    {
+                        LoggedInUser = user;
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, UserName)
+                        };
 
-                    LoggedInUser = user;
+                        if (UserName == "admin") claims.Add(new Claim(ClaimTypes.Role, "admin"));
 
-                    var claims = new List<Claim> { new Claim(ClaimTypes.Name, UserName) };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-                    return RedirectToPage("/Item/GetAllItems");
-
+                        var claimsIdentity =
+                            new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(claimsIdentity));
+                        return RedirectToPage("/Item/GetAllItems");
+                    }
                 }
 
             }

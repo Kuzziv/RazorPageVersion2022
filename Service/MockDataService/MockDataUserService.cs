@@ -13,18 +13,18 @@ namespace RazorPageVersion2022.Service.MockDataService
         {
             _jsonFileService = jsonFileService;
             //_users = MockData.MockUsers.GetAllUsers().ToList();
-            _users = _jsonFileService.GetJsonItems().ToList();
+            _users = _jsonFileService.GetJsonObjects().ToList();
         }
 
         public List<User> GetAllUsers()
         {
-            return MockData.MockUsers.GetAllUsers();
+            return _users.ToList();
         }
 
         public void AddUser(User user)
         { 
-            MockData.MockUsers.AddUser(user);
-            _jsonFileService.SaveJsonItems(_users);
+            _users.Add(user);
+            _jsonFileService.SaveJsonObjects(_users);
 
         }
     }
