@@ -1,4 +1,5 @@
-﻿using RazorPageVersion2022.Models;
+﻿using RazorPageVersion2022.Comperator;
+using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
 
@@ -71,6 +72,27 @@ namespace RazorPageVersion2022.Service.MockDataService
                 }
             }
             return null;
+        }
+
+        public IEnumerable<Item> SortById()
+        {
+            return from item in _items
+                   orderby item.Id
+                   select item;
+        }
+
+        public IEnumerable<Item> SortByIdDescending()
+        {
+            return from item in _items
+                   orderby item.Id descending
+                   select item;
+        }
+
+
+        public IEnumerable<Item> SortByName()
+        {
+            _items.Sort(new NameComperator());
+            return _items;
         }
 
         public IEnumerable<Item> NameSearch(string str)

@@ -26,11 +26,17 @@
 
 <h1>Items</h1>
 
-<table class="table table-bordered table-hover table-striped">
+<table class="table table-bordered table-hover table-striped table-opacity">
     <thead>
-        <tr>
+        <tr class="btn-secondary active">
             <th>
-                Id
+                <div class="d-flex justify-content-between">
+                    <div><h5>Id </h5></div>
+                    <div>
+                        <a data-toggle="tooltip" title="Sort By Id" asp-page-handler="SortById"><i class="fa fa-angle-up"></i></a>
+                        <a data-toggle="tooltip" title="Sort By Id Descending" asp-page-handler="SortByIdDescending"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
             </th>
             <th>
                 Name

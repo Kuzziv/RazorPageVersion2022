@@ -12,12 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-//builder.Services.AddSingleton<IItemService, MockItemService>();
+builder.Services.AddSingleton<IItemService, MockItemService>();
 builder.Services.AddSingleton<IUserService, MockDataUserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
 
-builder.Services.AddTransient<IItemService, SQLItemService>();
+//builder.Services.AddTransient<IItemService, SQLItemService>();
 //builder.Services.AddTransient<IUserService, SQLUserService>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>

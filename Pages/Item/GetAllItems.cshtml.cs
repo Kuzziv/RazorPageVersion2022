@@ -34,5 +34,17 @@ namespace RazorPageVersion2022.Pages.Item
             Items = _iItemService.PriceFilter(MaxPrice, MinPrice).ToList();
             return Page();
         }
+
+        public IActionResult OnGetSortById()
+        {
+            Items = _iItemService.SortById().ToList();
+            return Page();
+        }
+
+        public IActionResult OnGetSortByIdDescending()
+        {
+            Items = _iItemService.SortByIdDescending().ToList();
+            return Page();
+        }
     }
 }
