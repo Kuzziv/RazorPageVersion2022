@@ -2,30 +2,35 @@
 using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
+using RazorPageVersion2022.Service.SQLService;
 
 namespace RazorPageVersion2022.Service.MockDataService
 {
     public class MockItemService : IItemService
     {
         private JsonFileService<Item> _jsonFileService { get; set; }
+        private DbService _dbService { get; set; }
 
         private List<Item> _items;
 
-        public MockItemService(JsonFileService<Item> jsonFileService)
+        public MockItemService(JsonFileService<Item> jsonFileService, DbService dbService)
         {
+            _dbService = dbService;
             _jsonFileService = jsonFileService;
             //_items = MockData.MockItems.GetAllItems();
-            _items = _jsonFileService.GetJsonObjects().ToList();
+            //_items = _jsonFileService.GetJsonObjects().ToList();
+            _items = _dbService.GetItems().Result;
         }
         public List<Item> GetAllItems()
         {
-            return MockData.MockItems.GetAllItems();
+            return _items.ToList();
         }
 
         public void AddItem(Item item)
         {
-            MockData.MockItems.AddItem(item);
+            _items.Add(item);
             _jsonFileService.SaveJsonObjects(_items);
+            _dbService.AddItem(item);
         }
 
         public Item DeleteItem(int? itemId)
