@@ -13,7 +13,7 @@ namespace RazorPageVersion2022.Pages.Login
 {
     public class LoginPageModel : PageModel
     {
-        public static User LoggedInUser { get; set; } = null;
+        //public static User LoggedInUser { get; set; } = null;
 
         private IUserService _iUserService;
 
@@ -41,7 +41,7 @@ namespace RazorPageVersion2022.Pages.Login
                     var passwordHasher = new PasswordHasher<string>();
                     if (passwordHasher.VerifyHashedPassword(null, user.Password, Password) == PasswordVerificationResult.Success)
                     {
-                        LoggedInUser = user;
+                        //LoggedInUser = user;
                         var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.Name, UserName)

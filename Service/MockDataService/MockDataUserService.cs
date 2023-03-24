@@ -9,15 +9,14 @@ namespace RazorPageVersion2022.Service.MockDataService
     {
         public List<User> _users { get; set; }
         private JsonFileService<User> _jsonFileService { get; set; }
-        private DbService _dbService { get; set; }
+        private IService<User> _service;
 
-        public MockDataUserService(JsonFileService<User> jsonFileService, DbService dbService)
+        public MockDataUserService(JsonFileService<User> jsonFileService)
         {
-            _dbService = dbService;
             _jsonFileService = jsonFileService;
             //_users = MockData.MockUsers.GetAllUsers().ToList();
             //_users = _jsonFileService.GetJsonObjects().ToList();
-            _users = _dbService.GetUsers().Result;
+            _users = (List<User>)_service.GetObjectsAsync().Result;
         }
 
         public List<User> GetAllUsers()
@@ -29,7 +28,7 @@ namespace RazorPageVersion2022.Service.MockDataService
         {
             _users.Add(user);
             _jsonFileService.SaveJsonObjects(_users);
-            _dbService.SaveUsers(_users);
+            _service.AddObjectAsync(user);
         }
     }
 }

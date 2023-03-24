@@ -9,17 +9,16 @@ namespace RazorPageVersion2022.Service.MockDataService
     public class MockItemService : IItemService
     {
         private JsonFileService<Item> _jsonFileService { get; set; }
-        private DbService _dbService { get; set; }
+        private IService<Item> _service;
 
         private List<Item> _items;
 
-        public MockItemService(JsonFileService<Item> jsonFileService, DbService dbService)
-        {
-            _dbService = dbService;
+        public MockItemService(JsonFileService<Item> jsonFileService)
+        {            
             _jsonFileService = jsonFileService;
             //_items = MockData.MockItems.GetAllItems();
             //_items = _jsonFileService.GetJsonObjects().ToList();
-            _items = _dbService.GetItems().Result;
+            _items = (List<Item>?)_service.GetObjectsAsync().Result;
         }
         public List<Item> GetAllItems()
         {
@@ -30,7 +29,7 @@ namespace RazorPageVersion2022.Service.MockDataService
         {
             _items.Add(item);
             _jsonFileService.SaveJsonObjects(_items);
-            _dbService.AddItem(item);
+            _service.AddObjectAsync(item);
         }
 
         public Item DeleteItem(int? itemId)
@@ -48,6 +47,7 @@ namespace RazorPageVersion2022.Service.MockDataService
             {
                 _items.Remove(itemToBeDeleted);
                 _jsonFileService.SaveJsonObjects(_items);
+                _service.DeleteObjectAsync(itemToBeDeleted);
             }
             return itemToBeDeleted;
         }
@@ -64,6 +64,7 @@ namespace RazorPageVersion2022.Service.MockDataService
                     }
                 }
                 _jsonFileService.SaveJsonObjects(_items);
+                _service.UpdateObjectAsync(item);
             }
         }        
 
