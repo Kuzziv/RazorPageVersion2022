@@ -8,17 +8,18 @@ namespace RazorPageVersion2022.Service.MockDataService
 {
     public class MockItemService : IItemService
     {
-        private JsonFileService<Item> _jsonFileService { get; set; }
-        private IService<Item> _service;
+        private JsonFileService<Item> _jsonFileService;
+        private DbServiceGeneric<Item> _dbServiceGeneric;
 
         private List<Item> _items;
 
-        public MockItemService(JsonFileService<Item> jsonFileService)
+        public MockItemService(JsonFileService<Item> jsonFileService, DbServiceGeneric<Item> dbServiceGeneric)
         {            
             _jsonFileService = jsonFileService;
+            _dbServiceGeneric = dbServiceGeneric;
             //_items = MockData.MockItems.GetAllItems();
             //_items = _jsonFileService.GetJsonObjects().ToList();
-            _items = (List<Item>?)_service.GetObjectsAsync().Result;
+            _items = _dbServiceGeneric.GetObjectsAsync().Result.ToList();
         }
         public List<Item> GetAllItems()
         {
@@ -29,7 +30,7 @@ namespace RazorPageVersion2022.Service.MockDataService
         {
             _items.Add(item);
             _jsonFileService.SaveJsonObjects(_items);
-            _service.AddObjectAsync(item);
+            _dbServiceGeneric.AddObjectAsync(item);
         }
 
         public Item DeleteItem(int? itemId)
@@ -47,7 +48,7 @@ namespace RazorPageVersion2022.Service.MockDataService
             {
                 _items.Remove(itemToBeDeleted);
                 _jsonFileService.SaveJsonObjects(_items);
-                _service.DeleteObjectAsync(itemToBeDeleted);
+                _dbServiceGeneric.DeleteObjectAsync(itemToBeDeleted);
             }
             return itemToBeDeleted;
         }
@@ -64,7 +65,7 @@ namespace RazorPageVersion2022.Service.MockDataService
                     }
                 }
                 _jsonFileService.SaveJsonObjects(_items);
-                _service.UpdateObjectAsync(item);
+                _dbServiceGeneric.UpdateObjectAsync(item);
             }
         }        
 

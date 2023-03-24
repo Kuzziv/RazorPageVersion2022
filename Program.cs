@@ -18,8 +18,6 @@ builder.Services.AddSingleton<IUserService, MockDataUserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
 
-//builder.Services.AddTransient<IService<Item>>();
-//builder.Services.AddTransient<IService<User>>();
 builder.Services.AddTransient<DbServiceGeneric<Item>>();
 builder.Services.AddTransient<DbServiceGeneric<User>>();
 

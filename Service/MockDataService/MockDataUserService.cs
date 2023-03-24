@@ -8,15 +8,16 @@ namespace RazorPageVersion2022.Service.MockDataService
     public class MockDataUserService : IUserService
     {
         public List<User> _users { get; set; }
-        private JsonFileService<User> _jsonFileService { get; set; }
-        private IService<User> _service;
+        private JsonFileService<User> _jsonFileService;
+        private DbServiceGeneric<User> _dbServiceGeneric;
 
-        public MockDataUserService(JsonFileService<User> jsonFileService)
+        public MockDataUserService(JsonFileService<User> jsonFileService, DbServiceGeneric<User> dbServiceGeneric)
         {
             _jsonFileService = jsonFileService;
+            _dbServiceGeneric = dbServiceGeneric;
             //_users = MockData.MockUsers.GetAllUsers().ToList();
             //_users = _jsonFileService.GetJsonObjects().ToList();
-            _users = (List<User>)_service.GetObjectsAsync().Result;
+            _users = _dbServiceGeneric.GetObjectsAsync().Result.ToList();
         }
 
         public List<User> GetAllUsers()
@@ -28,7 +29,7 @@ namespace RazorPageVersion2022.Service.MockDataService
         {
             _users.Add(user);
             _jsonFileService.SaveJsonObjects(_users);
-            _service.AddObjectAsync(user);
+            _dbServiceGeneric.AddObjectAsync(user);
         }
     }
 }

@@ -31,7 +31,6 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Item/GetAllItems">Item list page</a>
                         </li>
-                        </li>
                         @{
                             if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
                             {
@@ -62,7 +61,6 @@
                                 </li>
                             }
                         }
-                    </ul>
                     </ul>
                 </div>
             </div>

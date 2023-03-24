@@ -4,7 +4,7 @@ using RazorPageVersion2022.Service.Interfaces;
 
 namespace RazorPageVersion2022.Service.SQLService
 {
-    public class DbServiceGeneric<T> : IService<T> where T : class
+    public class DbServiceGeneric<T> where T : class
     {
         public async Task<IEnumerable<T>> GetObjectsAsync()
         {
