@@ -41,7 +41,7 @@ namespace RazorPageVersion2022.Pages.Order
             User = _iuserService.GetUserByUserName(HttpContext.User.Identity.Name);
             Order.UserId = User.UserId;
             Order.ItemId = Item.Id;
-            Order.dateTime = DateTime.Now;
+            Order.Date = DateTime.Now;
             Order.Count = Count;
             _iorderService.AddOrder(Order);
             return RedirectToPage("../Item/GetAllItems");

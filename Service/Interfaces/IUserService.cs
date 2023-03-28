@@ -11,6 +11,6 @@ namespace RazorPageVersion2022.Service.Interfaces
 
         void AddUser(User user);
         User GetUserByUserName(string userName);
-        IEnumerable<OrderDAO> GetUserOrders(User user);
+        User GetUserOrders(User user);
     }
 }

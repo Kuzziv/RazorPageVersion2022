@@ -1,4 +1,5 @@
 ﻿using RazorPageVersion2022.DAO;
+using RazorPageVersion2022.EFDbContext;
 using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
@@ -40,9 +41,11 @@ namespace RazorPageVersion2022.Service.MockDataService
             return _users.Find(user => user.UserName == userName);
         }
 
-        public IEnumerable<OrderDAO> GetUserOrders(User user)
+        public User GetUserOrders(User user)
         {
             return _userDbService.GetOrdersByUserIdAsync(user.UserId).Result;
         }
+
+
     }
 }

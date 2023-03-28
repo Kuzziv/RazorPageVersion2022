@@ -10,7 +10,7 @@ namespace RazorPageVersion2022.Pages.Order
     {
         private IUserService _iuserService;
 
-        public IEnumerable<OrderDAO> MyOrders{ get; set; }        
+        public IEnumerable<Models.Order> MyOrders { get; set; }
 
         public MyOrdersModel(IUserService userService)
         {
@@ -20,7 +20,7 @@ namespace RazorPageVersion2022.Pages.Order
         public IActionResult OnGet()
         {            
             User CurrentUser = _iuserService.GetUserByUserName(HttpContext.User.Identity.Name);
-            MyOrders = _iuserService.GetUserOrders(CurrentUser);
+            MyOrders = _iuserService.GetUserOrders(CurrentUser).Orders;
             
             return Page();
         }

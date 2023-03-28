@@ -36,16 +36,16 @@
                             @order.ItemId
                         </td>
                         <td>
-                            @order.ItemName
+                            @order.Item.Name
                         </td>
                         <td>
-                            @order.Price
+                            @order.Item.Price
                         </td>
                         <td>
                             @order.Count
                         </td>
                         <td>
-                            @(order.Count * order.Price)
+                            @(order.Count * order.Item.Price)
                         </td>
                     </tr>
                 }
