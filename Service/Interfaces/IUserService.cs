@@ -9,6 +9,6 @@ namespace RazorPageVersion2022.Service.Interfaces
         public List<User> _users { get; set; }
 
         void AddUser(User user);
-
+        User GetUserByUserName(string userName);
     }
 }

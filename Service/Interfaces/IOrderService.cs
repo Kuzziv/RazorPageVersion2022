@@ -1,6 +1,11 @@
-﻿namespace RazorPageVersion2022.Service.Interfaces
+﻿using RazorPageVersion2022.Models;
+
+namespace RazorPageVersion2022.Service.Interfaces
 {
-    public class IOrderService
+    public interface IOrderService
     {
+        List<Order> GetAllOrder();
+        void AddOrder(Order order);
+        
     }
 }

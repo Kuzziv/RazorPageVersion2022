@@ -31,5 +31,10 @@ namespace RazorPageVersion2022.Service.MockDataService
             _jsonFileService.SaveJsonObjects(_users);
             _dbServiceGeneric.AddObjectAsync(user);
         }
+
+        public User GetUserByUserName(string userName)
+        {
+            return _users.Find(user => user.UserName == userName);
+        }
     }
 }

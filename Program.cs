@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<IItemService, ItemService>();
 builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddSingleton<IOrderService, OrderService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
 builder.Services.AddTransient<JsonFileService<Order>>();
