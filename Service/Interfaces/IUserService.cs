@@ -1,4 +1,5 @@
-﻿using RazorPageVersion2022.Models;
+﻿using RazorPageVersion2022.DAO;
+using RazorPageVersion2022.Models;
 
 namespace RazorPageVersion2022.Service.Interfaces
 {
@@ -6,9 +7,10 @@ namespace RazorPageVersion2022.Service.Interfaces
     {
         List<User> GetAllUsers();
 
-        public List<User> _users { get; set; }
+        public List<User> _users { get; }
 
         void AddUser(User user);
         User GetUserByUserName(string userName);
+        IEnumerable<OrderDAO> GetUserOrders(User user);
     }
 }

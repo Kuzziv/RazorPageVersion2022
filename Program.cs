@@ -24,6 +24,8 @@ builder.Services.AddTransient<DbServiceGeneric<Item>>();
 builder.Services.AddTransient<DbServiceGeneric<User>>();
 builder.Services.AddTransient<DbServiceGeneric<Order>>();
 
+builder.Services.AddTransient<UserDbService, UserDbService>();
+
 builder.Services.AddDbContext<ItemDbContext>();
 
 //builder.Services.AddTransient<IItemService, SQLItemService>();

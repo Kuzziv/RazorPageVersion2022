@@ -16,6 +16,7 @@ namespace RazorPageVersion2022.Pages.Order
 
         [BindProperty]
         public int Count { get; set; }
+        //virtual ICollection<Order>;
 
         public OrderItemModel(IItemService itemService, IUserService userService, IOrderService orderService)
         {
