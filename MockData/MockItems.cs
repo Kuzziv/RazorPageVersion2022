@@ -6,9 +6,9 @@ namespace RazorPageVersion2022.MockData
     {
         public static List<Item> itemsList = new List<Item>()
         {
-            new Models.Item(1, "PC", 5999),
-            new Models.Item(2, "Skærm", 1999),
-            new Models.Item(3, "Tastatur", 999)
+            new Models.Item("PC", 5999),
+            new Models.Item("Skærm", 1999),
+            new Models.Item("Tastatur", 999)
         };
 
         public static List<Item> GetAllItems()

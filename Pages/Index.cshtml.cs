@@ -10,10 +10,7 @@ namespace RazorPageVersion2022.Pages
     {
         public void OnGet()
         {
-            if (LoginPageModel.LoggedInUser == null)
-            {
-                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            }
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
     }
 }

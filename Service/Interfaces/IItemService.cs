@@ -11,6 +11,12 @@ namespace RazorPageVersion2022.Service.Interfaces
         Item GetItemById(int id);
         Item DeleteItem(int? id);
 
+        IEnumerable<Item> SortById();
+        IEnumerable<Item> SortByIdDescending();
+        IEnumerable<Item> SortByName();
+        IEnumerable<Item> SortByNameDescending();
+        IEnumerable<Item> SortByPrice(); 
+        IEnumerable<Item> SortByPriceDescending(); 
         IEnumerable<Item> NameSearch(string str);
 
         IEnumerable<Item> PriceFilter(int maxPrice, int minPrice = 0);

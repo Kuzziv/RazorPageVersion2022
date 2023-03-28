@@ -13,5 +13,15 @@
     "Id": 3,
     "Name": "Tastatur",
     "Price": 999
+  },
+  {
+    "Id": 4,
+    "Name": "Mus",
+    "Price": 550
+  },
+  {
+    "Id": 5,
+    "Name": "Headset",
+    "Price": 1850
   }
 ]

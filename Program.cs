@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using RazorPageVersion2022.EFDbContext;
 using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
@@ -16,6 +17,13 @@ builder.Services.AddSingleton<IItemService, MockItemService>();
 builder.Services.AddSingleton<IUserService, MockDataUserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
+builder.Services.AddTransient<JsonFileService<Order>>();
+
+builder.Services.AddTransient<DbServiceGeneric<Item>>();
+builder.Services.AddTransient<DbServiceGeneric<User>>();
+builder.Services.AddTransient<DbServiceGeneric<Order>>();
+
+builder.Services.AddDbContext<ItemDbContext>();
 
 //builder.Services.AddTransient<IItemService, SQLItemService>();
 //builder.Services.AddTransient<IUserService, SQLUserService>();
@@ -38,16 +46,10 @@ builder.Services.AddAuthorization(options =>
         policy.RequireClaim(ClaimTypes.Role, "admin"));
 });
 
-//builder.Services.AddMvc().AddRazorPagesOptions(options =>
-//{
-//    options.Conventions.AuthorizeFolder("/Item");
-//}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-//builder.Services.AddMvc().AddRazorPagesOptions(options =>
-//{
-//    options.Conventions.AuthorizeFolder("/Item");
-//}).SetCompatibilityVersion(CompatibilityVersion.Latest);
-
+builder.Services.AddMvc().AddRazorPagesOptions(options =>
+{
+    options.Conventions.AuthorizeFolder("/Item");
+}).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
 var app = builder.Build();
 
@@ -63,6 +65,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
