@@ -6,14 +6,14 @@ using RazorPageVersion2022.Service.SQLService;
 
 namespace RazorPageVersion2022.Service.MockDataService
 {
-    public class MockItemService : IItemService
+    public class ItemService : IItemService
     {
         private JsonFileService<Item> _jsonFileService;
         private DbServiceGeneric<Item> _dbServiceGeneric;
 
         private List<Item> _items;
 
-        public MockItemService(JsonFileService<Item> jsonFileService, DbServiceGeneric<Item> dbServiceGeneric)
+        public ItemService(JsonFileService<Item> jsonFileService, DbServiceGeneric<Item> dbServiceGeneric)
         {            
             _jsonFileService = jsonFileService;
             _dbServiceGeneric = dbServiceGeneric;
