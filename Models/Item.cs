@@ -21,7 +21,7 @@ namespace RazorPageVersion2022.Models
 
         [Display(Name = "Pris")]
         [Required(ErrorMessage = "Der skal angives en pris")]
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         public int CompereTo(Item order)
         {

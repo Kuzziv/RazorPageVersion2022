@@ -1,10 +1,11 @@
 ﻿using RazorPageVersion2022.Models;
+using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
 using RazorPageVersion2022.Service.SQLService;
 
 namespace RazorPageVersion2022.Service.MockDataService
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         public DbServiceGeneric<Order> _DbGeneric;
         public JsonFileService<Order> _JsonFileService;
@@ -18,5 +19,16 @@ namespace RazorPageVersion2022.Service.MockDataService
         }
 
 
+        public void AddOrder(Order order)
+        {
+            _Orders.Add(order);
+            _JsonFileService.SaveJsonObjects(_Orders);
+            _DbGeneric.AddObjectAsync(order);
+        }
+
+        public List<Order> GetAllOrder()
+        {
+            return _Orders;
+        }
     }
 }

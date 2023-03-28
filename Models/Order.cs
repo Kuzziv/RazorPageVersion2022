@@ -10,7 +10,7 @@ namespace RazorPageVersion2022.Models
         public int OrderId { get; set; }
 
         [Required]
-        public DateTime dateTime { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
         public int UserId { get; set; }
@@ -35,7 +35,7 @@ namespace RazorPageVersion2022.Models
         public Order(int orderId, int userId, User user, int itemId, Item item, int count)
         {
             OrderId = orderId;
-            dateTime = DateTime.Now;
+            Date = DateTime.Now;
             UserId = userId;
             User = user;
             ItemId = itemId;

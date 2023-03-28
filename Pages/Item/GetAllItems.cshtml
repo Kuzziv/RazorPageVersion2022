@@ -102,15 +102,9 @@
                             @item.Price
                         </td>
                         <td>
-                            <!-- Call to action buttons -->
-                            <ul class="list-inline m-0">
-                                <li class="list-inline-item">
-                                    <a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" title="Edit" asp-page="EditItem" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="btn btn-danger btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Delete" asp-page="DeleteItem" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
-                                </li>
-                            </ul>
+                            <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="EditItem" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-danger btn-sm " type="button" title="Delete" asp-page="DeleteItem" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i></a>
                         </td>
                     </tr>
                 }

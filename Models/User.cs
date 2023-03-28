@@ -15,6 +15,8 @@ namespace RazorPageVersion2022.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
 
+        public virtual ICollection<Order> Orders { get; set; }
+
         public User()
         {
             
