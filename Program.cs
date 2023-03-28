@@ -17,9 +17,11 @@ builder.Services.AddSingleton<IItemService, MockItemService>();
 builder.Services.AddSingleton<IUserService, MockDataUserService>();
 builder.Services.AddTransient<JsonFileService<Item>>();
 builder.Services.AddTransient<JsonFileService<User>>();
+builder.Services.AddTransient<JsonFileService<Order>>();
 
 builder.Services.AddTransient<DbServiceGeneric<Item>>();
 builder.Services.AddTransient<DbServiceGeneric<User>>();
+builder.Services.AddTransient<DbServiceGeneric<Order>>();
 
 builder.Services.AddDbContext<ItemDbContext>();
 

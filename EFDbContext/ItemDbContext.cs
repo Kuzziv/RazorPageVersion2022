@@ -12,6 +12,7 @@ namespace RazorPageVersion2022.EFDbContext
 
         public DbSet<Item> Items { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
     }
 

@@ -12,8 +12,8 @@ using RazorPageVersion2022.EFDbContext;
 namespace RazorPageVersion2022.Migrations
 {
     [DbContext(typeof(ItemDbContext))]
-    [Migration("20230323115802_100")]
-    partial class _100
+    [Migration("20230328085915_RazorPageVersion2022")]
+    partial class RazorPageVersion2022
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,10 @@ namespace RazorPageVersion2022.Migrations
             modelBuilder.Entity("RazorPageVersion2022.Models.Item", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -46,15 +49,22 @@ namespace RazorPageVersion2022.Migrations
 
             modelBuilder.Entity("RazorPageVersion2022.Models.User", b =>
                 {
-                    b.Property<string>("UserName")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserName");
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
