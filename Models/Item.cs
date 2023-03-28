@@ -5,11 +5,13 @@ namespace RazorPageVersion2022.Models
 {
     public class Item
     {
-        [Display(Name = "Item ID")]
-        [Required(ErrorMessage = "Der skal angives et ID til Item")]
-        [Range(typeof(int), "0", "10000", ErrorMessage = "ID skal være mellem (1) og (2)")]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[Display(Name = "Item ID")]
+        //[Required(ErrorMessage = "Der skal angives et ID til Item")]
+        //[Range(typeof(int), "0", "10000", ErrorMessage = "ID skal være mellem (1) og (2)")]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
+
+        [Key]        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Display(Name = "Item Navn")]
@@ -30,9 +32,8 @@ namespace RazorPageVersion2022.Models
             
         }
 
-        public Item(int id, string name, decimal price)
+        public Item(string name, decimal price)
         {
-            Id = id;
             Name = name;
             Price = price;
         }
