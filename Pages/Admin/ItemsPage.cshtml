@@ -1,9 +1,9 @@
-﻿@page 
-@model RazorPageVersion2022.Pages.Item.GetAllItemsModel
+﻿@page
+@model RazorPageVersion2022.Pages.Admin.ItemsPageModel
 @{
 }
 
-<h1>Items</h1>
+<h1>Admin Items</h1>
 
 <div class="row">
     <div class="col-4"><h5>Search Name</h5></div>
@@ -102,7 +102,9 @@
                             @item.Price
                         </td>
                         <td>
-                            <a class="btn btn-primary btn-sm " type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-primary btn-sm" type="button" title="Edit" asp-page="/Item/EditItem" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                            <a class="btn btn-danger btn-sm" type="button" title="Delete" asp-page="/Item/DeleteItem" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-primary btn-sm" type="button" data-toggle="tooltip" data-placement="top" title="Order" asp-page="../Order/OrderItem" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i></a>
                         </td>
                     </tr>
                 }
@@ -110,3 +112,8 @@
         </tbody>
     </table>
 </div>
+<br />
+<p>
+    <a class="btn btn-primary" data-toggle="tooltip" title="Add Item" asp-page="/Item/CreateItem"><i class="fa fa-plus-square mr-1"></i> Create a new Item </a>
+</p>
+<br />

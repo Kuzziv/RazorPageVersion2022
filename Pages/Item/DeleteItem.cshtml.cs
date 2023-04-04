@@ -34,7 +34,7 @@ namespace RazorPageVersion2022.Pages.Item
                 return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
             }
                 
-            return RedirectToPage("GetAllItems");
+            return RedirectToPage("/Admin/ItemsPage");
         }
     }
 }

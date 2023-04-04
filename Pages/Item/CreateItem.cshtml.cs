@@ -28,7 +28,7 @@ namespace RazorPageVersion2022.Pages.Item
                 return Page();
             }
             await _iItemService.AddItemAsync(Item);
-            return RedirectToPage("GetAllItems");
+            return RedirectToPage("/Admin/ItemsPage");
         }
     }
 }

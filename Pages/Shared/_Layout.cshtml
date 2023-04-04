@@ -29,13 +29,16 @@
                             <a class="nav-link" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Item/GetAllItems">Item list page</a>
+                            <a class="nav-link" asp-area="" asp-page="/Item/GetAllItems">Item page</a>
                         </li>
                         @{
                             if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-page="/Admin/CreateUser">Create User</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/Admin/ItemsPage">Admin Item Page</a>
                                 </li>
                             }
                         }

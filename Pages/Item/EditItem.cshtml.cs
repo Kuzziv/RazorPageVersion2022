@@ -33,7 +33,7 @@ namespace RazorPageVersion2022.Pages.Item
                 return Page();
             }
             await _iItemService.UpdateItemAsync(Item);
-            return RedirectToPage("GetAllItems");
+            return RedirectToPage("/Admin/ItemsPage");
         }
     }
 }
