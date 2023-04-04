@@ -29,11 +29,11 @@ namespace RazorPageVersion2022.Service.MockDataService
             return _users.ToList();
         }
 
-        public void AddUser(User user)
+        public async Task AddUserAsync(User user)
         {
             _users.Add(user);
             _jsonFileService.SaveJsonObjects(_users);
-            _dbServiceGeneric.AddObjectAsync(user);
+            await _dbServiceGeneric.AddObjectAsync(user);
         }
 
         public User GetUserByUserName(string userName)

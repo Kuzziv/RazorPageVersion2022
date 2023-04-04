@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPageVersion2022.Service.Interfaces;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
 
 namespace RazorPageVersion2022.Pages.Admin
 {
@@ -27,14 +26,18 @@ namespace RazorPageVersion2022.Pages.Admin
             passwordHasher = new PasswordHasher<string>();
         }
 
-
-        public IActionResult OnPost()
+        public void OnGet()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            _iuserService.AddUser(new Models.User(UserName, passwordHasher.HashPassword(null, Password)));
+
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
+            await _iuserService.AddUserAsync(new Models.User(UserName, passwordHasher.HashPassword(null, Password)));
             return RedirectToPage("/Login/LoginPage");
         }
     }

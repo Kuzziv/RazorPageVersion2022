@@ -26,13 +26,13 @@ namespace RazorPageVersion2022.Pages.Item
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            _iItemService.UpdateItem(Item);
+            await _iItemService.UpdateItemAsync(Item);
             return RedirectToPage("GetAllItems");
         }
     }

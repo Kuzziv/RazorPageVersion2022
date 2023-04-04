@@ -6,10 +6,10 @@ namespace RazorPageVersion2022.Service.Interfaces
     {
         List<Item> GetAllItems();
 
-        void AddItem(Item item);
-        void UpdateItem(Item item);
+        Task AddItemAsync(Item item);
+        Task UpdateItemAsync(Item item);
         Item GetItemById(int id);
-        Item DeleteItem(int? id);
+        Task<Item> DeleteItemAsync(int? itemId);
 
         IEnumerable<Item> SortById();
         IEnumerable<Item> SortByIdDescending();
