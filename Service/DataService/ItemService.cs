@@ -1,5 +1,4 @@
-﻿using RazorPageVersion2022.Comperator;
-using RazorPageVersion2022.Models;
+﻿using RazorPageVersion2022.Models;
 using RazorPageVersion2022.Service.Interfaces;
 using RazorPageVersion2022.Service.JsonService;
 using RazorPageVersion2022.Service.SQLService;
