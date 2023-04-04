@@ -4,12 +4,7 @@
 }
 
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="@Model.Item.Id" class="control-lable"></label>
-        <input asp-for="@Model.Item.Id" class="form-control" />
-        <span asp-validation-for="@Model.Item.Id" class="text-danger"></span>
-    </div>
+<form method="post">    
     <div class="form-group">
         <label asp-for="@Model.Item.Name" class="control-lable"></label>
         <input asp-for="@Model.Item.Name" class="form-control" />

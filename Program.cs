@@ -33,8 +33,7 @@ builder.Services.AddDbContext<ItemDbContext>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
-    // This lambda determines whether user consent for non-essential cookies is needed for a given request. 
-    options.CheckConsentNeeded = context => true;
+    // This lambda determines whether user consent for non-essential cookies is needed for a given request. options.CheckConsentNeeded = context => true;
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
@@ -43,11 +42,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     cookieOptions.LoginPath = "/Login/LoginPage";
 });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Administrator", policy =>
-        policy.RequireClaim(ClaimTypes.Role, "admin"));
-});
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("Administrator", policy =>
+//        policy.RequireClaim(ClaimTypes.Role, "admin"));
+//});
 
 builder.Services.AddMvc().AddRazorPagesOptions(options =>
 {

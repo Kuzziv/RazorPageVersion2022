@@ -19,17 +19,22 @@ namespace RazorPageVersion2022.Pages.Item
         {
             Item = _iItemService.GetItemById(id);
             if (Item == null)
+            {
                 return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
+            }
 
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            Models.Item deletedItem = _iItemService.DeleteItem(Item.Id);
+            Models.Item deletedItem = await _iItemService.DeleteItemAsync(Item.Id);
             if (deletedItem == null)
+            {
                 return RedirectToPage("/NotFound"); //NotFound er ikke defineret endnu
-            return RedirectToPage("GetAllItems");
+            }
+                
+            return RedirectToPage("/Admin/ItemsPage");
         }
     }
 }

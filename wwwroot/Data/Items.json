@@ -23,5 +23,10 @@
     "Id": 5,
     "Name": "Headset",
     "Price": 1850.00
+  },
+  {
+    "Id": 9,
+    "Name": "CPU 3900x",
+    "Price": 2700.99
   }
 ]

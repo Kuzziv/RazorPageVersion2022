@@ -9,7 +9,7 @@ namespace RazorPageVersion2022.Service.Interfaces
 
         public List<User> _users { get; }
 
-        void AddUser(User user);
+        Task AddUserAsync(User user);
         User GetUserByUserName(string userName);
         User GetUserOrders(User user);
     }
