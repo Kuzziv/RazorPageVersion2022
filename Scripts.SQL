@@ -7,11 +7,13 @@ use RazorPageVersion2022DB;
 --drop table Item;
 --drop table Users;
 
-CREATE TABLE [dbo].[Item] (
-    [Id]    INT IDENTITY(1,1) PRIMARY KEY,
-    [Name]  VARCHAR (50) NOT NULL,
-    [Price] FLOAT (53)   NOT NULL
+CREATE TABLE [dbo].[Items] (
+    [Id]    INT             IDENTITY (1, 1) NOT NULL,
+    [Name]  NVARCHAR (100)  NOT NULL,
+    [Price] DECIMAL (18, 2) NOT NULL,
+    CONSTRAINT [PK_Items] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
 
 
 CREATE TABLE [dbo].[Users] (
