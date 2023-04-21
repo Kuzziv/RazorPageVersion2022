@@ -28,6 +28,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Item/GetAllItems">Item page</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Calendar/MainCalendar">Calendar</a>
+                        </li>
                         @{
                             if (Context.User.Identity != null && Context.User.Identity.Name == "admin")
                             {
