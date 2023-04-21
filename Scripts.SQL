@@ -15,9 +15,10 @@ CREATE TABLE [dbo].[Item] (
 
 
 CREATE TABLE [dbo].[Users] (
-    [Id]       INT IDENTITY(1,1) PRIMARY KEY,
-    [UserName] VARCHAR (50)  NOT NULL,
-    [Password] VARCHAR (200) NOT NULL
+    [UserId]   INT            IDENTITY (1, 1) NOT NULL,
+    [UserName] NVARCHAR (20)  NOT NULL,
+    [Password] NVARCHAR (MAX) NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([UserId] ASC)
 );
 
 
